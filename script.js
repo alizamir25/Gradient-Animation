@@ -2,18 +2,15 @@ class GradientAnimation {
     constructor() {
       this.cnv        = document.querySelector(`canvas`);
       this.ctx        = this.cnv.getContext(`2d`);
-  
       this.circlesNum = 15;
       this.minRadius  = 400;
       this.maxRadius  = 400;
-      this.speed      = .005;
-      
+      this.speed      = .005;  
       (window.onresize = () => {
         this.setCanvasSize();
         this.createCircles();
       })();
       this.drawAnimation();
-  
     }
     setCanvasSize() {
       this.w = this.cnv.width  = innerWidth * devicePixelRatio;
@@ -38,7 +35,6 @@ class GradientAnimation {
       window.requestAnimationFrame(() => this.drawAnimation());
     }
   }
-  
   class Circle {
     constructor(w, h, minR, maxR) {
       this.x = Math.random() * w;
@@ -55,7 +51,7 @@ class GradientAnimation {
       const gradient = ctx.createRadialGradient(x, y, 0, x, y, this.radius);
             gradient.addColorStop(0, this.firstColor);
             gradient.addColorStop(1, this.secondColor);
-  
+
       ctx.globalCompositeOperation = `overlay`;
       ctx.fillStyle = gradient;
       ctx.beginPath();
@@ -63,7 +59,6 @@ class GradientAnimation {
       ctx.fill(); 
     }
   }
-  
   window.onload = () => {
     new GradientAnimation();
   }
